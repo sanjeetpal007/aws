@@ -1,0 +1,67 @@
+>aws configure
+
+
+{{for downloading file from cloud}}
+>aws s3 cp s3://sanjeetpal007/pal/books.PNG Desktop
+
+{{for downloading file from cloud}}
+>aws s3 cp Desktop/style.css s3://sanjeetpal007/pal/style.css
+
+{{upload folder to s3}}
+aws s3 cp Desktop/wordpress/. s3://sanjeet123465789/wordpress --recursive
+
+
+{{making uploaded folder to public }}
+aws s3 cp Desktop/wordpress/. s3://sanjeet123465789/orgin_master --recursive --acl public-read
+
+
+
+{{assign permission to upload file}}
+>aws s3 presign  s3://sanjeetpal007/pal/style.css --expires-in 300
+
+{{aways start on copy instance from vomlume AMi}}
+sudo chkconfig httpd on
+
+
+{{connect ec2 istance from cmd}}
+aws ec2-instance-connect send-ssh-public-key --instance-id i-056187320bf3bd108 --availability-zone us-east-2b --instance-os-user ec2-user --ssh-public-key file://Desktop/public_sam.pub
+
+
+{{connect using cywin}}
+ssh -i "Desktop/sam.pem" ec2-user@ip6_address
+
+{{install php5 and apache}}
+
+sudo apt-get yum apache2 libapache2-mod-php5 mysql-server php5-mysql php5
+
+
+{{run apache2}}
+service apache2 restart
+
+(option-2 - make sure you selected http port 80 while creating instance)
+sudo yum install httpd -y
+sudo service httpd start
+ sudo systemctl restart httpd.service
+
+{{login as ec2-user}}
+sudo su - ec2-user
+
+{{run through console}}
+ssh ec2-user@18.222.29.145 -i test_web_file_name.pem
+sudo yum update
+sudo yum --enablerepo=epel install phpmyadmin
+
+{{webpage store in }}
+cd /var/www/html/
+sudo touch index.html
+sudo vi index.html
+:wq!
+
+{{installing efs in enstance start}}
+su ec2-user
+sudo yum install -y amazon-efs-utils
+
+
+{{connect cmd to RDS postgreSQL db}}
+https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.Connecting.AWSCLI.PostgreSQL.html
+
